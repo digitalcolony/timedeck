@@ -1,4 +1,4 @@
-// Core data types for the World Clock Dashboard
+// Core data interfaces for the World Clock Dashboard
 
 export interface CityData {
   id: string;           // Unique identifier (e.g., "new-york-us")
