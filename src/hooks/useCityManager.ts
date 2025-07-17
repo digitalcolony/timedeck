@@ -12,27 +12,22 @@ interface UseCityManagerReturn {
 }
 
 export const useCityManager = (): UseCityManagerReturn => {
+  // Initialize storage support immediately to prevent flash
+  const [hasStorageSupport] = useState(() => cityStorageUtils.isStorageAvailable());
   const [cities, setCities] = useState<CityData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [hasStorageSupport, setHasStorageSupport] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Initialize cities from localStorage on mount
   useEffect(() => {
-    const initializeCities = () => {
+    const initializeCities = async () => {
       try {
         setIsLoading(true);
         setError(null);
         
-        // Check storage availability
-        const storageAvailable = cityStorageUtils.isStorageAvailable();
-        setHasStorageSupport(storageAvailable);
-        
-        if (storageAvailable) {
+        if (hasStorageSupport) {
           const loadedCities = cityStorageUtils.loadCities();
           setCities(loadedCities);
-        } else {
-          setError('Local storage is not available. Cities will not persist between sessions.');
         }
       } catch (err) {
         setError('Failed to initialize city data');
@@ -43,7 +38,7 @@ export const useCityManager = (): UseCityManagerReturn => {
     };
 
     initializeCities();
-  }, []);
+  }, [hasStorageSupport]);
 
   // Add a city to the list
   const addCity = useCallback((city: CityData): boolean => {
