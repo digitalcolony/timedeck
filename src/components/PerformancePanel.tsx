@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Text, Stack, Button, Group, Badge, Collapse } from '@mantine/core';
+import { Card, Text, Stack, Button, Group, Badge, Collapse, useMantineColorScheme } from '@mantine/core';
 import { IconChartBar, IconChevronDown, IconChevronUp } from '@tabler/icons-react';
 import { performanceLogger } from '../utils/performance';
 
 export default function PerformancePanel() {
+  const { colorScheme } = useMantineColorScheme();
+  const isDark = colorScheme === 'dark';
+  
   const [isOpen, setIsOpen] = useState(false);
   const [metrics, setMetrics] = useState<any[]>([]);
   const [pageLoadTime, setPageLoadTime] = useState<number | null>(null);
@@ -46,8 +49,11 @@ export default function PerformancePanel() {
         right: 20, 
         width: 300,
         zIndex: 1000,
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        backdropFilter: 'blur(10px)'
+        backgroundColor: isDark 
+          ? 'rgba(30, 41, 59, 0.95)' 
+          : 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(10px)',
+        border: isDark ? '1px solid #475569' : '1px solid #e2e8f0'
       }}
     >
       <Group justify="space-between" mb="xs">
@@ -75,7 +81,7 @@ export default function PerformancePanel() {
                 color={pageLoadTime < 1000 ? 'green' : pageLoadTime < 3000 ? 'yellow' : 'red'} 
                 size="sm"
               >
-                {pageLoadTime.toFixed(0)}ms
+                {(pageLoadTime / 1000).toFixed(1)}s
               </Badge>
             </Group>
           )}
@@ -109,7 +115,9 @@ export default function PerformancePanel() {
           ))}
 
           {/* Performance Rating */}
-          <Group justify="space-between" pt="xs" style={{ borderTop: '1px solid #eee' }}>
+          <Group justify="space-between" pt="xs" style={{ 
+            borderTop: isDark ? '1px solid #475569' : '1px solid #eee' 
+          }}>
             <Text size="xs" fw={600}>Rating:</Text>
             <Badge 
               color={

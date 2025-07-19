@@ -3,7 +3,7 @@ import { SimpleGrid, Container, Text, Stack, Button } from '@mantine/core';
 import { IconWorldPin } from '@tabler/icons-react';
 import { useMultipleCurrentTimes } from '../hooks/useCurrentTime';
 import CityClockCard from './CityClockCard';
-import { performanceLogger, usePerformanceLogging } from '../utils/performance';
+
 import type { CityData } from '../types';
 
 interface CityGridProps {
@@ -13,24 +13,10 @@ interface CityGridProps {
 }
 
 export default function CityGrid({ cities, onRemoveCity, onAddFirstCity }: CityGridProps) {
-  // Track CityGrid component performance
-  usePerformanceLogging('CityGrid');
-  
   // Use a single timer for all cities to improve performance
-  const timezones = cities.map(city => city.timezone);
+  // Memoize timezones to prevent unnecessary re-renders
+  const timezones = React.useMemo(() => cities.map(city => city.timezone), [cities]);
   const timeDataMap = useMultipleCurrentTimes(timezones);
-
-  // Track time data loading performance
-  React.useEffect(() => {
-    if (cities.length > 0) {
-      performanceLogger.startTimer('Time Data Loading');
-      const hasAllTimeData = cities.every(city => timeDataMap.get(city.timezone));
-      if (hasAllTimeData) {
-        performanceLogger.endTimer('Time Data Loading');
-        performanceLogger.logMeasurement('Cities Rendered Count', cities.length);
-      }
-    }
-  }, [cities.length, timeDataMap]);
 
   // Show empty state when no cities are selected
   if (cities.length === 0) {
