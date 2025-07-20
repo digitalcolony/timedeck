@@ -11,6 +11,8 @@ import {
 } from "@mantine/core";
 import { IconInfoCircle, IconSun, IconMoon } from "@tabler/icons-react";
 import { useLocalStorage, useColorScheme } from "@mantine/hooks";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import "@mantine/core/styles.css";
 import { useCityManager } from "../hooks/useCityManager";
 import CitySelector from "./CitySelector";
@@ -101,7 +103,7 @@ export default function App() {
     setShowPerformancePanel(urlParams.get("perf") === "1");
   }, []);
 
-  const { cities, addCity, removeCity, isLoading, hasStorageSupport, error } =
+  const { cities, addCity, removeCity, reorderCities, isLoading, hasStorageSupport, error } =
     useCityManager();
 
   const handleCitySelect = (city: CityData) => {
@@ -120,7 +122,8 @@ export default function App() {
 
   return (
     <MantineProvider theme={theme} forceColorScheme={colorScheme}>
-      <div
+      <DndProvider backend={HTML5Backend}>
+        <div
         style={{
           minHeight: "100vh",
           width: "100%",
@@ -231,7 +234,7 @@ export default function App() {
           </Text>
         ) : (
           /* City grid */
-          <CityGrid cities={cities} onRemoveCity={handleCityRemove} />
+          <CityGrid cities={cities} onRemoveCity={handleCityRemove} onReorderCities={reorderCities} />
         )}
         </Container>
 
@@ -242,6 +245,7 @@ export default function App() {
           </React.Suspense>
         )}
       </div>
+      </DndProvider>
     </MantineProvider>
   );
 }

@@ -92,21 +92,36 @@ export default function CityClockCard({ city, timeData, onRemove }: CityClockCar
       </Group>
 
       <Stack gap="sm" mt="lg" style={{ position: 'relative', zIndex: 1 }}>
-        <Text 
-          size="2.5rem" 
-          fw={800} 
-          ta="center"
-          style={{
-            color: isDark ? '#60a5fa' : '#64748b', // Reduced saturation for light mode
-            letterSpacing: '-0.02em',
-            fontFamily: 'Poppins, system-ui, sans-serif',
-            textShadow: isDark 
-              ? '0 2px 4px rgba(96, 165, 250, 0.3)' 
-              : '0 2px 4px rgba(30, 64, 175, 0.3)'
-          }}
-        >
-          {timeData?.time || '--:--'}
-        </Text>
+        <Group justify="center" align="center" gap="sm">
+          <Text 
+            size="2.5rem" 
+            fw={800} 
+            ta="center"
+            style={{
+              color: isDark ? '#60a5fa' : '#64748b', // Reduced saturation for light mode
+              letterSpacing: '-0.02em',
+              fontFamily: 'Poppins, system-ui, sans-serif',
+              textShadow: isDark 
+                ? '0 2px 4px rgba(96, 165, 250, 0.3)' 
+                : '0 2px 4px rgba(30, 64, 175, 0.3)'
+            }}
+          >
+            {timeData?.time || '--:--'}
+          </Text>
+          {timeData?.timeOfDay && (
+            <Text 
+              size="xl" 
+              style={{ 
+                fontSize: '1.5rem',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))',
+                marginTop: '0.2rem' // Slight vertical alignment adjustment
+              }}
+              title={timeData.timeOfDay.label}
+            >
+              {timeData.timeOfDay.icon}
+            </Text>
+          )}
+        </Group>
         
         <Text size="md" c="dimmed" ta="center" fw={500}>
           {timeData?.date || 'Loading...'}

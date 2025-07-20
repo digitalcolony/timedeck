@@ -18,4 +18,9 @@ export interface TimeData {
   date: string;
   timezone: string;
   timestamp?: number;
+  timeOfDay?: {
+    icon: string;
+    label: string;
+    period: 'sunrise' | 'day' | 'sunset' | 'night';
+  };
 }

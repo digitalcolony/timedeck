@@ -6,6 +6,7 @@ interface UseCityManagerReturn {
   cities: CityData[];
   addCity: (city: CityData) => boolean;
   removeCity: (cityId: string) => boolean;
+  reorderCities: (reorderedCities: CityData[]) => boolean;
   isLoading: boolean;
   hasStorageSupport: boolean;
   error: string | null;
@@ -95,10 +96,34 @@ export const useCityManager = (): UseCityManagerReturn => {
     }
   }, [cities, hasStorageSupport]);
 
+  // Reorder cities (for drag and drop)
+  const reorderCities = useCallback((reorderedCities: CityData[]): boolean => {
+    try {
+      setError(null);
+      
+      setCities(reorderedCities);
+      
+      // Save to localStorage if available
+      if (hasStorageSupport) {
+        const saveSuccess = cityStorageUtils.saveCities(reorderedCities);
+        if (!saveSuccess) {
+          setError('Failed to save new order. Changes may not persist.');
+        }
+      }
+      
+      return true;
+    } catch (err) {
+      setError('Failed to reorder cities');
+      console.error('Error reordering cities:', err);
+      return false;
+    }
+  }, [hasStorageSupport]);
+
   return {
     cities,
     addCity,
     removeCity,
+    reorderCities,
     isLoading,
     hasStorageSupport,
     error
