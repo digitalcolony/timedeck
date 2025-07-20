@@ -4,6 +4,9 @@ dist/
 .vercel/
 .netlify/
 
+
+.kiro/settings/
+
 # Generated types
 .astro/
 

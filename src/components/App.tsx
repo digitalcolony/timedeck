@@ -17,6 +17,7 @@ import "@mantine/core/styles.css";
 import { useCityManager } from "../hooks/useCityManager";
 import CitySelector from "./CitySelector";
 import CityGrid from "./CityGrid";
+import Footer from "./Footer";
 
 
 // Lazy load PerformancePanel to reduce initial bundle size
@@ -85,7 +86,7 @@ export default function App() {
   
   // Theme management - check localStorage first, then fall back to system preference
   const [colorScheme, setColorScheme] = useLocalStorage<"light" | "dark">({
-    key: "world-explorer-color-scheme",
+    key: "timedeck-color-scheme",
     defaultValue: systemColorScheme, // Use system preference as default
     getInitialValueInEffect: false, // Get value immediately, not in effect
   });
@@ -127,6 +128,8 @@ export default function App() {
         style={{
           minHeight: "100vh",
           width: "100%",
+          display: "flex",
+          flexDirection: "column",
           background:
             colorScheme === "dark"
               ? `
@@ -142,8 +145,9 @@ export default function App() {
           backgroundAttachment: "fixed",
         }}
       >
-        <Container size="xl" py="xl">
-        {/* Theme Toggle Button */}
+        <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          <Container size="xl" py="xl">
+          {/* Theme Toggle Button */}
         <Group justify="flex-end" mb="lg">
           <ActionIcon
             onClick={toggleColorScheme}
@@ -184,7 +188,7 @@ export default function App() {
             letterSpacing: "-0.02em",
           }}
         >
-          🌍 World Explorer
+          ⏰ TimeDeck
         </Title>
         <Text
           ta="center"
@@ -193,8 +197,7 @@ export default function App() {
           size="lg"
           style={{ fontWeight: 500 }}
         >
-          Track time across the globe • Discover the world, one timezone at a
-          time
+          Your global time dashboard • Track multiple cities
         </Text>
 
         {/* Storage warning - only show if storage is unavailable AND user has cities */}
@@ -236,7 +239,10 @@ export default function App() {
           /* City grid */
           <CityGrid cities={cities} onRemoveCity={handleCityRemove} onReorderCities={reorderCities} />
         )}
-        </Container>
+          </Container>
+        </div>
+
+        <Footer />
 
         {/* Performance Panel - Only show when ?perf=1 is in URL */}
         {showPerformancePanel && (

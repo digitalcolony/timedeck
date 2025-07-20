@@ -1,25 +1,55 @@
 ---
-import { ColorSchemeScript } from '@mantine/core';
-import App from '../components/App';
+import { ColorSchemeScript } from "@mantine/core";
+import App from "../components/App";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>🌍 World Explorer - Global Time Tracker</title>
-		<meta name="description" content="Discover time across the globe • Track multiple cities and timezones with our beautiful world traveler dashboard" />
-		
-		<!-- Google Fonts - Poppins for travel-inspired typography -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-		
-		<ColorSchemeScript />
-	</head>
-	<body>
-		<App client:idle />
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>TimeDeck - Global Time Dashboard</title>
+    <meta
+      name="description"
+      content="Your global time dashboard • Track multiple cities and timezones with draggable cards"
+    />
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#1e40af" />
+    <meta name="msapplication-TileColor" content="#1e40af" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="TimeDeck - Global Time Dashboard" />
+    <meta
+      property="og:description"
+      content="Your global time dashboard • Track multiple cities and timezones with draggable cards"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="TimeDeck - Global Time Dashboard" />
+    <meta
+      property="twitter:description"
+      content="Your global time dashboard • Track multiple cities and timezones with draggable cards"
+    />
+
+    <!-- Google Fonts - Poppins for travel-inspired typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <ColorSchemeScript />
+  </head>
+  <body>
+    <App client:idle />
+  </body>
 </html>

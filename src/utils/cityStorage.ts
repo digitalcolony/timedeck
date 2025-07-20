@@ -1,6 +1,6 @@
 import type { CityData } from '../types';
 
-const STORAGE_KEY = 'world-clock-cities';
+const STORAGE_KEY = 'timedeck-cities';
 
 // Storage utility functions with error handling
 export const cityStorageUtils = {
