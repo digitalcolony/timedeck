@@ -30,15 +30,23 @@ export default function Footer() {
             margin: '0 auto'
           }}
         >
-          ⏰ 2025-{currentYear}. TimeDeck is a project created by <a href="https://michaelallensmith.com">Michael Allen Smith</a>.  
-          TimeDeck does not track users or display ads. No pop-up windows either. 
+          ⏰ 2025-{currentYear}. TimeDeck is a project created by{' '}
+          <Anchor 
+            href="https://michaelallensmith.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: isDark ? '#60a5fa' : '#1e40af' }}
+          >
+            Michael Allen Smith
+          </Anchor>
+          . TimeDeck does not track users, require account signup, or display ads. No pop-up windows either. 
           It is a non-commercial hobby project made in the spirit of the early web. 
           
           <br />
           <br />
           The code for this site is freely available on{' '}
           <Anchor 
-            href="https://github.com" 
+            href="https://github.com/digitalcolony/timedeck" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ color: isDark ? '#60a5fa' : '#1e40af' }}
