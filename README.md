@@ -121,12 +121,12 @@ The grid layout adapts to different screen sizes:
 
 ## 🌍 Supported Cities
 
-The app includes 50+ major cities from around the world:
+The app includes 60+ major cities from around the world:
 
 - **North America**: New York, Los Angeles, Chicago, Toronto, Vancouver, Seattle, Mexico City
 - **Central America**: Guatemala City, San José, Panama City, Tegucigalpa, Managua
 - **South America**: São Paulo, Buenos Aires, Lima
-- **Europe**: London, Paris, Berlin, Rome, Madrid, Amsterdam, Moscow
+- **Europe**: London, Paris, Berlin, Rome, Madrid, Amsterdam, Moscow, Zurich, Vienna, Prague, Stockholm, Copenhagen, Oslo, Helsinki, Warsaw, Budapest, Brussels
 - **Asia**: Tokyo, Beijing, Shanghai, Hong Kong, Singapore, Mumbai, Delhi, Bangkok, Seoul
 - **Southeast Asia**: Manila, Jakarta, Kuala Lumpur, Ho Chi Minh City, Hanoi, Yangon, Phnom Penh
 - **Middle East**: Dubai, Istanbul
