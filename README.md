@@ -226,7 +226,3 @@ TimeDeck embraces a **travel-inspired aesthetic** with:
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
-
----
-
-**TimeDeck** - Your global time dashboard • Track the world, one timezone at a time ⏰🌍
