@@ -123,9 +123,9 @@ The grid layout adapts to different screen sizes:
 
 The app includes 60+ major cities from around the world:
 
-- **North America**: New York, Los Angeles, Chicago, Toronto, Vancouver, Seattle, Mexico City
+- **North America**: New York, Los Angeles, Chicago, Toronto, Vancouver, Seattle, Mexico City, Honolulu
 - **Central America**: Guatemala City, San José, Panama City, Tegucigalpa, Managua
-- **South America**: São Paulo, Buenos Aires, Lima
+- **South America**: São Paulo, Buenos Aires, Lima, Bogotá
 - **Europe**: London, Paris, Berlin, Rome, Madrid, Amsterdam, Moscow, Zurich, Vienna, Prague, Stockholm, Copenhagen, Oslo, Helsinki, Warsaw, Budapest, Brussels
 - **Asia**: Tokyo, Beijing, Shanghai, Hong Kong, Singapore, Mumbai, Delhi, Bangkok, Seoul
 - **Southeast Asia**: Manila, Jakarta, Kuala Lumpur, Ho Chi Minh City, Hanoi, Yangon, Phnom Penh

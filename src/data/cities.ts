@@ -89,6 +89,13 @@ export const WORLD_CITIES: CityData[] = [
     timezone: "America/Managua",
     coordinates: { lat: 12.1364, lng: -86.2514 },
   },
+  {
+    id: "honolulu-us",
+    name: "Honolulu",
+    country: "United States",
+    timezone: "Pacific/Honolulu",
+    coordinates: { lat: 21.3099, lng: -157.8581 },
+  },
 
   // South America
   {
@@ -111,6 +118,13 @@ export const WORLD_CITIES: CityData[] = [
     country: "Peru",
     timezone: "America/Lima",
     coordinates: { lat: -12.0464, lng: -77.0428 },
+  },
+  {
+    id: "bogota-co",
+    name: "Bogotá",
+    country: "Colombia",
+    timezone: "America/Bogota",
+    coordinates: { lat: 4.7110, lng: -74.0721 },
   },
 
   // Europe
