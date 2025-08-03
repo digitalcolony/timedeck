@@ -9,6 +9,7 @@ A modern, responsive world clock application built with Astro, React, and Mantin
 - **🌐 Multi-City Time Tracking**: Add cities from around the world to track different time zones
 - **🎴 Draggable Cards**: Reorder your cities with smooth drag-and-drop functionality
 - **🌅 Day/Night Indicators**: Visual icons showing sunrise, day, sunset, and night for each city
+- **⚡ Quick Time Converter**: Modal-based tool to instantly convert any time across all your cities
 - **🌙 Dark/Light Mode**: Beautiful themes that adapt to your system preference
 - **📱 Responsive Design**: Optimized for mobile, tablet, and desktop with adaptive grid layout
 - **💾 Persistent Storage**: Your selected cities and order persist between browser sessions
@@ -141,6 +142,15 @@ The app includes 60+ major cities from around the world:
 - Visual indicators for already selected cities
 - Prevents duplicate selections
 - Travel-inspired search interface
+
+### Quick Time Converter
+
+- **Modal Interface**: Clean, focused conversion experience
+- **Smart Input**: Accepts "3 PM EST", "15:30", "noon", and more
+- **Instant Results**: Real-time conversion to all your cities
+- **Relative Times**: Shows "3 hrs behind", "+1 day", etc.
+- **Copy & Share**: Easy sharing of conversion results
+- **Keyboard Shortcut**: Press Ctrl/Cmd + K to open quickly
 
 ### Time Display with Day/Night Indicators
 

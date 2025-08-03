@@ -9,7 +9,7 @@ import {
   ActionIcon,
   Group,
 } from "@mantine/core";
-import { IconInfoCircle, IconSun, IconMoon } from "@tabler/icons-react";
+import { IconInfoCircle, IconSun, IconMoon, IconClock } from "@tabler/icons-react";
 import { useLocalStorage, useColorScheme } from "@mantine/hooks";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -18,6 +18,7 @@ import { useCityManager } from "../hooks/useCityManager";
 import CitySelector from "./CitySelector";
 import CityGrid from "./CityGrid";
 import Footer from "./Footer";
+import TimeConverterModal from "./TimeConverterModal";
 
 
 // Lazy load PerformancePanel to reduce initial bundle size
@@ -97,11 +98,30 @@ export default function App() {
 
   // Check URL parameter to show/hide performance panel
   const [showPerformancePanel, setShowPerformancePanel] = React.useState(false);
+  
+  // Time converter modal state
+  const [showTimeConverter, setShowTimeConverter] = React.useState(false);
 
   React.useEffect(() => {
     // Check for ?perf=1 in URL
     const urlParams = new URLSearchParams(window.location.search);
     setShowPerformancePanel(urlParams.get("perf") === "1");
+  }, []);
+
+  // Keyboard shortcut for time converter
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key === 'k') {
+        event.preventDefault();
+        setShowTimeConverter(true);
+      }
+      if (event.key === 'Escape') {
+        setShowTimeConverter(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const { cities, addCity, removeCity, reorderCities, isLoading, hasStorageSupport, error } =
@@ -147,8 +167,30 @@ export default function App() {
       >
         <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
           <Container size="xl" py="xl">
-          {/* Theme Toggle Button */}
-        <Group justify="flex-end" mb="lg">
+          {/* Theme Toggle and Time Converter Buttons */}
+        <Group justify="flex-end" mb="lg" gap="md">
+          {cities.length > 0 && (
+            <ActionIcon
+              onClick={() => setShowTimeConverter(true)}
+              variant="subtle"
+              size="lg"
+              aria-label="Open time converter (Ctrl+K)"
+              style={{
+                background:
+                  colorScheme === "dark"
+                    ? "linear-gradient(135deg, #374151 0%, #4b5563 100%)"
+                    : "linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)",
+                border:
+                  colorScheme === "dark"
+                    ? "1px solid #4b5563"
+                    : "1px solid #d1d5db",
+                transition: "all 0.2s ease",
+              }}
+            >
+              <IconClock size={20} style={{ color: "#f97316" }} />
+            </ActionIcon>
+          )}
+          
           <ActionIcon
             onClick={toggleColorScheme}
             variant="subtle"
@@ -243,6 +285,13 @@ export default function App() {
         </div>
 
         <Footer />
+
+        {/* Time Converter Modal */}
+        <TimeConverterModal
+          isOpen={showTimeConverter}
+          onClose={() => setShowTimeConverter(false)}
+          cities={cities}
+        />
 
         {/* Performance Panel - Only show when ?perf=1 is in URL */}
         {showPerformancePanel && (
