@@ -38,17 +38,7 @@ export default function Footer() {
 						Michael Allen Smith
 					</Anchor>
 					. TimeDeck does not track users, require account signup, or display ads. No pop-up windows
-					either. It is a non-commercial hobby project made in the spirit of the early web. Learn
-					more about the{" "}
-					<Anchor
-						href="https://potatohack.com"
-						target="_blank"
-						rel="noopener noreferrer"
-						style={{ color: isDark ? "#60a5fa" : "#1e40af" }}
-					>
-						Potato Hack
-					</Anchor>
-					.
+					either. It is a non-commercial hobby project made in the spirit of the early web.
 					<br />
 					<br />
 					The code for this site is freely available on{" "}
